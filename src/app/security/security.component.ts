@@ -26,8 +26,13 @@ export class SecurityComponent implements OnInit {
   public getAccessToken(requestBody){
     const response = this.service.generateToken(requestBody);
     response.subscribe((data: HttpResponse<any>) => {
-      console.log(data.headers.get('authorization'));
+      this.accessToken = data.headers.get('authorization');
+      console.log(this.accessToken);
     });
   }
+
+
+
+
 
 }

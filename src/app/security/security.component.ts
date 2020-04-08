@@ -15,6 +15,7 @@ export class SecurityComponent implements OnInit {
   };
 
   accessToken: string;
+  rezult = 'DENIED';
 
   constructor(private service: JwtClientService) { }
 
@@ -28,10 +29,18 @@ export class SecurityComponent implements OnInit {
     response.subscribe((data: HttpResponse<any>) => {
       this.accessToken = data.headers.get('authorization');
       console.log(this.accessToken);
+      this.getWelcome(this.accessToken);
     });
   }
 
+  public getWelcome(tkn){
+    const welcome = this.service.getWelcome(tkn);
+    return welcome.subscribe( (data: string) =>
+    {this.rezult = data;
+     console.log(this.rezult);
 
+    } );
+  }
 
 
 

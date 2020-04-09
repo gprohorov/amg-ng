@@ -6,7 +6,12 @@ import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 })
 export class JwtClientService {
 
-  constructor(private http: HttpClient) { }
+  token: string;
+
+  constructor(private http: HttpClient) {
+
+
+  }
 
   public generateToken(request){
     return this.http.post('http://localhost:8080/login', request, {observe : 'response'});
